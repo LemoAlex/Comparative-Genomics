@@ -1,0 +1,19 @@
+## To compare genomes, the first step is to align them. For a multiple alignment, we will use Cactus.
+
+## 1st try, we align D.rerio genome and H.comes genome.
+
+## jobstore = temporary folder for storing files / cactus_seqfile = input file / *.hal is the output
+## The header of genomes are sometimes in wrong format ( contain spaces, commas etc..) we need to replace these 
+## sed 's/ /_/g' D.rerio.fna > D.rerio2.fna
+
+## seqfile in this format. Also need for a tree :
+
+  # Sequence data for progressive alignment of 2 genomes
+  # Seahorse, zebrafish
+   (H.comes, D.rerio);
+ *H.comes /home/alexandre/Genome.Comparison/H.comes4.fna
+ *D.rerio /home/alexandre/Genome.Comparison/D.rerio4.fna
+
+## Then we can run the program,
+
+cactus jobstore cactus_seqfile.txt cactus_seqfile.hal
