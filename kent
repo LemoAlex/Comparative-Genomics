@@ -1,0 +1,10 @@
+
+
+ mkdir /data/
+ cd data
+ mkdir scrpits
+ mkdir bin
+ chmod 755 /data/scripts 
+ chmod 755/data/bin
+cd data/bin
+ rsync -a rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/ .
