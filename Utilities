@@ -1,0 +1,11 @@
+##utilities to prepare for forward genomics pipeline
+
+##get some tools from https://github.com/hillerlab/CESAR2.0/tree/master/tools
+##download, and "compile" using : chmode +x FILE
+
+## we need : 
+-twoBitInfo
+-fatoTwobit
+-mafIndex
+-mafExtract
+
