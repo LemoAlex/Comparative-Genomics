@@ -8,3 +8,55 @@
  chmod 755/data/bin
 cd data/bin
  rsync -a rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/ .
+
+
+
+
+echo 'export PATH=data/bin:data/scripts:$PATH' >> $HOME/.bashrc
+
+
+echo 'export PATH=data/bin:/data/scripts:$PATH' >> $HOME/.bashrc
+
+######not working
+data/parasol/nodeInfo/nodeReport.sh 2 data/parasol/nodeInfo
+data/parasol/initParasol initialize
+myIp=`/usr/sbin/ip addr show | egrep "inet.*eth0" | awk '{print /home/users/l/lemopoua/data/parasol/nodeInfo}' | sed -e 's#/.*##;'`
+memSizeMb=`grep -w MemTotal /proc/meminfo  | awk '{print 1024*(1+int(/home/users/l/lemopoua/data/parasol/nodeInfo/(1024*1024)))}'`
+cpuCount=`grep processor /proc/cpuinfo | wc -l`
+memTotal=`echo $memSizeMb $cpuCount | awk '{printf "%d", 2, /home/users/l/lemopoua/data/parasol/nodeInfo}'`
+devShm=`df -k /dev/shm | grep dev/shm | awk '{printf "%d\n", 512*(1+int(/home/users/l/lemopoua/data/parasol/nodeInfo
+/(1024*1024)))}'`
+printf "%s\t%d\t%d\t/dev/shm\t/dev/shm\t%s\tbsw\n" "${myIp}" "${cpuCount}" "${memTotal}" "${devShm}" > /data/parasol/nodeInfo/${myIp}.ms
+
+##########
+
+#####getting the genomes
+
+
+mkdir data/genomes/dm6
+cd data/genomes/dm6
+rsync -avzP \
+   rsync://hgdownload.soe.ucsc.edu/goldenPath/dm6/bigZips/dm6.2bit .
+rsync -avzP \
+   rsync://hgdownload.soe.ucsc.edu/goldenPath/dm6/bigZips/dm6.chrom.sizes .
+
+mkdir /data/genomes/dm6/trackData/GCF_000005575.2_AgamP3
+ cd /data/genomes/dm6/trackData/GCF_000005575.2_AgamP3
+ rsync -L -a -P rsync://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/575/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3_genomic.fna.gz ./
+ rsync -L -a -P \
+     rsync://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/575/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3_assembly_report.txt ./
+ ls -og
+ total 79908
+ -rw-rw-r--. 1   811394 Mar  7  2017 GCF_000005575.2_AgamP3_assembly_report.txt
+ -rw-rw-r--. 1 81010275 Jun 15  2016 GCF_000005575.2_AgamP3_genomic.fna.gz
+ 
+ 
+ ###convert fna to 2bit
+cd /home/users/l/lemopoua/data/bin
+./faToTwoBit ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3_genomic.fna.gz ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3.2bit
+./twoBitInfo ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3.2bit stdout | sort -k2,2nr > ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3.chrom.sizes
+
+
+ perl doBlastzChainNet.pl ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/DEF
+
+
