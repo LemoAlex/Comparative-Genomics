@@ -60,11 +60,18 @@ mkdir /data/genomes/dm6/trackData/GCF_000005575.2_AgamP3
  
  
  ###convert fna to 2bit
+ 
+ #baobab
 cd /home/users/l/lemopoua/data/bin
+./faToTwoBit ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3_genomic.fna.gz ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3.2bit
+./twoBitInfo ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3.2bit stdout | sort -k2,2nr > ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3.chrom.sizes
+#gruezi
+cd /home/alexandre/data/bin
 ./faToTwoBit ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3_genomic.fna.gz ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3.2bit
 ./twoBitInfo ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3.2bit stdout | sort -k2,2nr > ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3.chrom.sizes
 
 
+
+
  perl doBlastzChainNet.pl ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/DEF -verbose=2 -noDbNameCheck \ -workhorse=localhost -bigClusterHub=localhost -skipDownload \ -dbHost=localhost -smallClusterHub=localhost \ -trackHub -fileServer=localhost -syntenicNet
-
-
+ perl doBlastzChainNet.pl ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/DEF 
