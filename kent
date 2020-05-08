@@ -73,8 +73,8 @@ cd /home/alexandre/data/bin
 
 
 
- perl doBlastzChainNet.pl ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/DEF -verbose=2 -noDbNameCheck \ -workhorse=localhost -bigClusterHub=localhost -skipDownload \ -dbHost=localhost -smallClusterHub=localhost \ -trackHub -fileServer=localhost -syntenicNet
- perl doBlastzChainNet.pl ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/DEF 
+ perl /home/alexandre/data/scripts/doBlastzChainNet.pl /home/alexandre/data/genomes/dm6/trackData/GCF_000005575.2_AgamP3/DEF -verbose=2 -noDbNameCheck -workhorse=localhost -bigClusterHub=localhost -skipDownload -dbHost=localhost -smallClusterHub=localhost -trackHub -fileServer=localhost -syntenicNet
+ perl doBlastzChainNet.pl home/alexandre/data/genomes/dm6/trackData/GCF_000005575.2_AgamP3/DEF 
  
  
  
