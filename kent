@@ -4,7 +4,7 @@
    printf "# creating /data/ directory hierarchy and installing binaries\n" 1>&2
    mkdir -p ./data/bin ./data/scripts ./data/genomes ./data/parasol/nodeInfo
    chmod 777 ./data ./data/genomes ./data/parasol ./data/parasol/nodeInfo
-   chmod 755 ./data/bin ./data/scripts
+   chmod 777 ./data/bin ./data/scripts
    rsync -a rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/ ./data/bin/
    yum -y install wget
    wget -qO ./data/parasol/nodeInfo/nodeReport.sh 'http://genomewiki.ucsc.edu/images/e/e3/NodeReport.sh.txt'
@@ -22,10 +22,10 @@
       --exclude='kent/src/hg/utils/automation/openStack'
    wget -O ./data/bin/bedSingleCover.pl 'http://genome-source.soe.ucsc.edu/gitlist/kent.git/raw/master/src/utils/bedSingleCover.pl' 
 
-echo 'export PATH=./data/bin:./data/scripts:$PATH' >> $HOME/.bashrc
+echo 'export PATH=/home/alexandre/data/bin:/home/alexandre/data/scripts:$PATH' >> /home/alexandre/.bashrc
 . $HOME/.bashrc
 
-./data/parasol/nodeInfo/nodeReport.sh 2 /home/alexandre/data/parasol/nodeInfo  ## remove usr/sbin from nodereport.sh in gruezi
+./data/parasol/nodeInfo/nodeReport.sh 2 /home/alexandre/data/parasol/nodeInfo  ## change path (data/parasol) to whole path
 ./data/parasol/initParasol initialize
 cd /data/parasol
 ./initParasol start
