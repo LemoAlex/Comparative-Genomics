@@ -1,4 +1,6 @@
- #!/bin/bash
+###INSTALL Parasol and DoBlastzChainNet
+#!/bin/bash
+
  export self=`id -n -u`
  if [ "${self}" = "root" ]; then
    printf "# creating /data/ directory hierarchy and installing binaries\n" 1>&2
@@ -31,51 +33,30 @@ cd /data/parasol
 ./initParasol start
 ./initParasol stop
 
-##testing
-
-
-
-
+##add /home/alexandre/data/bin : /home/alexandre/data/scripts to the shell PATH! check that it work. Here, added PATH to the environment file. 
+###quite complicated to work. Remove subcmd and add full path to the commands
 ##########
-
-#####getting the genomes
-
-
-mkdir data/genomes/dm6
-cd data/genomes/dm6
-rsync -avzP \
-   rsync://hgdownload.soe.ucsc.edu/goldenPath/dm6/bigZips/dm6.2bit .
-rsync -avzP \
-   rsync://hgdownload.soe.ucsc.edu/goldenPath/dm6/bigZips/dm6.chrom.sizes .
-
-mkdir /data/genomes/dm6/trackData/GCF_000005575.2_AgamP3
- cd /data/genomes/dm6/trackData/GCF_000005575.2_AgamP3
- rsync -L -a -P rsync://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/575/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3_genomic.fna.gz ./
- rsync -L -a -P \
-     rsync://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/575/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3_assembly_report.txt ./
- ls -og
- total 79908
- -rw-rw-r--. 1   811394 Mar  7  2017 GCF_000005575.2_AgamP3_assembly_report.txt
- -rw-rw-r--. 1 81010275 Jun 15  2016 GCF_000005575.2_AgamP3_genomic.fna.gz
+###convert fna to 2bit
  
- 
- ###convert fna to 2bit
- 
- #baobab
-cd /home/users/l/lemopoua/data/bin
-./faToTwoBit ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3_genomic.fna.gz ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3.2bit
-./twoBitInfo ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3.2bit stdout | sort -k2,2nr > ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3.chrom.sizes
+#baobab
 #gruezi
 cd /home/alexandre/data/bin
 ./faToTwoBit ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3_genomic.fna.gz ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3.2bit
-./twoBitInfo ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3.2bit stdout | sort -k2,2nr > ../genomes/dm6/trackData/GCF_000005575.2_AgamP3/GCF_000005575.2_AgamP3.chrom.sizes
+./twoBitInfo ../****.2bit *****.chrom.sizes
 
 
 
 
- perl /home/alexandre/data/scripts/doBlastzChainNet.pl /home/alexandre/data/genomes/dm6/trackData/GCF_000005575.2_AgamP3/DEF -verbose=2 -noDbNameCheck -workhorse=localhost -bigClusterHub=localhost -skipDownload -dbHost=localhost -smallClusterHub=localhost -trackHub -fileServer=localhost -syntenicNet
- perl doBlastzChainNet.pl home/alexandre/data/genomes/dm6/trackData/GCF_000005575.2_AgamP3/DEF 
+##start the pipeline
+###the DEF File needs to be changed for each genome (only Query is changing as we align with zebrafish as reference)
+##remove psl folder
+## change species name in do.log.SPECIES
+
+cd ~/data
+rm -r psl
+cd ~/data/parasol
+./initParasol start 
+screen
+time (/home/alexandre/data/scripts/doBlastzChainNet.pl /home/alexandre/data/genomes/zebrafish/DEF -verbose=2 -noDbNameCheck -workhorse=localhost -bigClusterHub=localhost --blastzOutRoot /home/alexandre/data -skipDownload -dbHost=localhost -smallClusterHub=localhost -trackHub -fileServer=localhost -swapDir=/home/alexandre/data/blastz.targetDb.swap/ -syntenicNet) > do.log.swordtail 
  
  
- 
- gensub2 file.list single template jobList
