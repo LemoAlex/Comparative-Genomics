@@ -57,6 +57,6 @@ rm -r psl
 cd ~/data/parasol
 ./initParasol start 
 screen
-time (/home/alexandre/data/scripts/doBlastzChainNet.pl /home/alexandre/data/genomes/zebrafish/DEF -verbose=2 -noDbNameCheck -workhorse=localhost -bigClusterHub=localhost --blastzOutRoot /home/alexandre/data -skipDownload -dbHost=localhost -smallClusterHub=localhost -trackHub -fileServer=localhost -swapDir=/home/alexandre/data/blastz.targetDb.swap/ -syntenicNet) > do.log.swordtail 
+time (/home/alexandre/data/scripts/doBlastzChainNet.pl /home/alexandre/data/genomes/zebrafish/DEF -verbose=2 -noDbNameCheck -workhorse=localhost -bigClusterHub=localhost --blastzOutRoot /home/alexandre/data -skipDownload -dbHost=localhost -smallClusterHub=localhost -trackHub -fileServer=localhost -swapDir=/home/alexandre/data/blastz.targetDb.swap/ -syntenicNet) > do.log.amberjack 
  
  
