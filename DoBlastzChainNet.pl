@@ -60,3 +60,8 @@ screen
 time (/home/alexandre/data/scripts/doBlastzChainNet.pl /home/alexandre/data/genomes/zebrafish/DEF -verbose=2 -noDbNameCheck -workhorse=localhost -bigClusterHub=localhost --blastzOutRoot /home/alexandre/data -skipDownload -dbHost=localhost -smallClusterHub=localhost -trackHub -fileServer=localhost -swapDir=/home/alexandre/data/blastz.targetDb.swap/ -syntenicNet) > do.log.amberjack 
  
  
+ 
+ ###multiple
+ 
+ roast + E=zebra "(((zebra) amber) guppy)" *.*.sing maf 3spec.maf
+
