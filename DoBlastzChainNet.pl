@@ -57,7 +57,7 @@ rm -r psl
 cd ~/data/parasol
 ./initParasol start 
 screen
-time (/home/alexandre/data/scripts/doBlastzChainNet.pl /home/alexandre/data/genomes/blenny/DEF -verbose=2 -noDbNameCheck -workhorse=localhost -bigClusterHub=localhost --blastzOutRoot /home/alexandre/data/genomes/blenny -skipDownload -dbHost=localhost -smallClusterHub=localhost -trackHub -fileServer=localhost -swapDir=/home/alexandre/data/blastz.targetDb.swap/ -syntenicNet) > do.log.arapaima
+time (/home/alexandre/data/scripts/doBlastzChainNet.pl /home/alexandre/data/genomes/ch.catfish/DEF -verbose=2 -noDbNameCheck -workhorse=localhost -bigClusterHub=localhost --blastzOutRoot /home/alexandre/data/genomes/ch.catfish -skipDownload -dbHost=localhost -smallClusterHub=localhost -trackHub -fileServer=localhost -swapDir=/home/alexandre/data/blastz.targetDb.swap/ -syntenicNet) > do.log.ch.catfish
  
  
  
