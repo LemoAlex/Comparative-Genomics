@@ -17,3 +17,18 @@
 ## Then we can run the program,
 
 cactus jobstore cactus_seqfile.txt cactus_seqfile.hal
+
+
+
+
+
+
+#multiple alignment progressive cactus
+
+python3 -m pip install virtualenv
+python3 -m virtualenv -p python3 cactus_env
+
+cd ~/
+source cactus_env/bin/activate
+
+docker run -v $(pwd):/data --rm -it quay.io/comparative-genomics-toolkit/cactus:v1.3.0 cactus /data/jobStore2 /data/test1.txt /data/test1.hal --binariesMode local
