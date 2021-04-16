@@ -1,0 +1,14 @@
+
+
+ nice -n 19 perl Maf2SpanningSeq_PRANK.perl test.renamed.maf -TwoBitSuffix ~/ForwardGenomics/genomes/ -treeFile /home/alexandre/ForwardGenomics/tree.txt
+
+
+nice -n 19 ./mafIndex -chromSizes=/home/alexandre/ForwardGenomics/genomes/Stickleback.chrom.sizes rename.maf out.bb     #### remove .1 in the chrom.size
+
+bigBedtoBed out.bb out.bdb  ##create bed file for the regions
+
+nice -n 19 ./mafExtract out.bb -regionList=out.bdb -outDir ./out
+
+AANH01000001 is not found in chromosome sizes file
+AANH01000001.1
+command exited with 255: bedToBigBed tempAtnC8m ../genomes/Stickleback.chrom.sizes out.bb -type=bed4+1
