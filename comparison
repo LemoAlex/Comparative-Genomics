@@ -8,7 +8,3 @@ nice -n 19 ./mafIndex -chromSizes=/home/alexandre/ForwardGenomics/genomes/Stickl
 bigBedtoBed out.bb out.bdb  ##create bed file for the regions
 
 nice -n 19 ./mafExtract out.bb -regionList=out.bdb -outDir ./out
-
-AANH01000001 is not found in chromosome sizes file
-AANH01000001.1
-command exited with 255: bedToBigBed tempAtnC8m ../genomes/Stickleback.chrom.sizes out.bb -type=bed4+1
