@@ -1,4 +1,7 @@
+mafSplit region.bdb -byTarget -useFullSequenceName out renamed.2.maf
 
+mafSplit renamed.2.maf -byTarget -useFullSequenceName
+ mafAddIRows renamed.2.maf ../genomes/stickleback.2bit addIOut
 
  nice -n 19 perl Maf2SpanningSeq_PRANK.perl test.renamed.maf -TwoBitSuffix ~/ForwardGenomics/genomes/ -treeFile /home/alexandre/ForwardGenomics/tree.txt
 
