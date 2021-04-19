@@ -64,4 +64,4 @@ time (/home/alexandre/data/scripts/doBlastzChainNet.pl /home/alexandre/data/geno
  ###multiple
  
  roast + E=zebra "(((zebra) amber) guppy)" *.*.sing maf 3spec.maf
-
+tba "(GCA_007844225.1_ASM784422v1_genomic((GCA_002260705.1_Sdu_1.0_genomic)((stickleback) (GCA_900634415.1_fCotGob3.1_genomic))));" *.net.maf 3spec.maf >&tba.log
