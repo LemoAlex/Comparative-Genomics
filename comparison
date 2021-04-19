@@ -3,8 +3,21 @@
  nice -n 19 perl Maf2SpanningSeq_PRANK.perl test.renamed.maf -TwoBitSuffix ~/ForwardGenomics/genomes/ -treeFile /home/alexandre/ForwardGenomics/tree.txt
 
 
-nice -n 19 ./mafIndex -chromSizes=/home/alexandre/ForwardGenomics/genomes/Stickleback.chrom.sizes rename.maf out.bb     #### remove .1 in the chrom.size
+nice -n 19 ./mafIndex -chromSizes=/home/alexandre/ForwardGenomics/genomes/stickleback.chrom.sizes renamed.2.maf out.bb -keepBed=region.bdb  #### remove .1 in the chrom.size
 
-bigBedtoBed out.bb out.bdb  ##create bed file for the regions
+./mafExtract out.bb outout2.maf -regionList=region.bdb -leaveEdgeMeta
 
-nice -n 19 ./mafExtract out.bb -regionList=out.bdb -outDir ./out
+AANH01000001
+
+perl Maf2SpanningSeq_PRANK.perl outout2.maf  AANH01016957.1 -runPrank -TwoBitSuffix ~/ForwardGenomics/genomes/ -treeFile /home/alexandre/ForwardGenomics/tree.txt -BDBFile testBDB -noMissingSeq
+
+
+out.maf CDS053214  -runPrank -treeFile /xieduo/01.B10K/07.Forward_genomics/test/identity/tree.nh -keepTemporaryFiles -genomePath genomes 
+ 
+ AANH01016957.1  
+ 
+ 
+ grep ^'AANH01000001' region.bdb > AANH01000001.bdb
+ ./mafExtract out.bb AANH01000001.maf -regionList=AANH01000001.bdb -leaveEdgeMeta
+
+ perl Maf2SpanningSeq_PRANK.perl  AANH01000001.maf  AANH01000001 -runPrank -TwoBitSuffix ~/ForwardGenomics/genomes/ -treeFile /home/alexandre/ForwardGenomics/tree.txt -BDBFile testBDB -noMissingSeq
