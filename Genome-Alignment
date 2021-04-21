@@ -37,3 +37,5 @@ source cactus_env/bin/activate
 
 #this works
 docker run -v $(pwd):/data --rm -it quay.io/comparative-genomics-toolkit/cactus:v1.3.0 cactus /data/jobStore2 /data/test1.txt /data/test1.hal --binariesMode local
+
+hal2maf
