@@ -6,17 +6,15 @@ mafAddIRows /home/alexandre/ForwardGenomics/scripts/out/outAANH01004007.1.maf
 for i in 
 mafAddIRows outAANH01000001.1.maf /home/alexandre/ForwardGenomics/genomes/stickleback/stickleback.2bit addIOut
 
-outAANH01000001.1
-
 ./mafIndex -chromSizes=/home/alexandre/ForwardGenomics/genomes/stickleback/stickleback.chrom.sizes final.maf out.bb -keepBed=region.bdb  #### remove .1 in the chrom.size
 
 ./mafIndex ououou.maf -chromSizes=/home/alexandre/ForwardGenomics/genomes/stickleback/stickleback.chrom.sizes outtest.bb keepBed=test.bdb
 
-./mafExtract outtest.bb outtest.maf -regionList=region.bdb -leaveEdgeMeta regionList=test.bdb
+./mafExtract out.bb outtest.maf -regionList=region.bdb -leaveEdgeMeta
 
-AANH01000001
 
-perl Maf2SpanningSeq_PRANK.perl outtest.maf   AANH01000002.1 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile testBDB -noMissingSeq
+
+perl Maf2SpanningSeq_PRANK.perl outtest.maf   AANH01006599.1 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile AANH01006599.1.BDB -noMissingSeq
 
 
 out.maf CDS053214  -runPrank -treeFile /xieduo/01.B10K/07.Forward_genomics/test/identity/tree.nh -keepTemporaryFiles -genomePath genomes 
