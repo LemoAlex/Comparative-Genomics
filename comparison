@@ -1,7 +1,7 @@
 mafSplit region.bdb -byTarget -useFullSequenceName out renamed.2.maf
 
 mafSplit renamed.2.maf -byTarget -useFullSequenceName
- mafAddIRows renamed.2.maf ../genomes/stickleback.2bit addIOut
+ mafAddIRows renamed.2.maf /home/alexandre/ForwardGenomics/genomes/stickleback/stickleback.2bit addIOut
 
  nice -n 19 perl Maf2SpanningSeq_PRANK.perl test.renamed.maf -TwoBitSuffix ~/ForwardGenomics/genomes/ -treeFile /home/alexandre/ForwardGenomics/tree.txt
 
@@ -23,4 +23,5 @@ out.maf CDS053214  -runPrank -treeFile /xieduo/01.B10K/07.Forward_genomics/test/
  grep ^'AANH01000001' region.bdb > AANH01000001.bdb
  ./mafExtract out.bb AANH01000001.maf -regionList=AANH01000001.bdb -leaveEdgeMeta
 
- perl Maf2SpanningSeq_PRANK.perl  AANH01000001.maf  AANH01000001 -runPrank -TwoBitSuffix ~/ForwardGenomics/genomes/ -treeFile /home/alexandre/ForwardGenomics/tree.txt -BDBFile testBDB -noMissingSeq
+ perl Maf2SpanningSeq_PRANK.perl AANH01016957.1.extract.maf  AANH01016957.1 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile testBDB -noMissingSeq
+ 
