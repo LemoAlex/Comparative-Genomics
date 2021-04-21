@@ -1,18 +1,22 @@
 mafSplit region.bdb -byTarget -useFullSequenceName out renamed.2.maf
 
 mafSplit renamed.2.maf -byTarget -useFullSequenceName
- mafAddIRows renamed.2.maf /home/alexandre/ForwardGenomics/genomes/stickleback/stickleback.2bit addIOut
 
- nice -n 19 perl Maf2SpanningSeq_PRANK.perl test.renamed.maf -TwoBitSuffix ~/ForwardGenomics/genomes/ -treeFile /home/alexandre/ForwardGenomics/tree.txt
+mafAddIRows /home/alexandre/ForwardGenomics/scripts/out/outAANH01004007.1.maf
+for i in 
+mafAddIRows outAANH01000001.1.maf /home/alexandre/ForwardGenomics/genomes/stickleback/stickleback.2bit addIOut
 
+outAANH01000001.1
 
-nice -n 19 ./mafIndex -chromSizes=/home/alexandre/ForwardGenomics/genomes/stickleback.chrom.sizes renamed.2.maf out.bb -keepBed=region.bdb  #### remove .1 in the chrom.size
+./mafIndex -chromSizes=/home/alexandre/ForwardGenomics/genomes/stickleback/stickleback.chrom.sizes final.maf out.bb -keepBed=region.bdb  #### remove .1 in the chrom.size
 
-./mafExtract out.bb outout2.maf -regionList=region.bdb -leaveEdgeMeta
+./mafIndex ououou.maf -chromSizes=/home/alexandre/ForwardGenomics/genomes/stickleback/stickleback.chrom.sizes outtest.bb keepBed=test.bdb
+
+./mafExtract outtest.bb outtest.maf -regionList=region.bdb -leaveEdgeMeta regionList=test.bdb
 
 AANH01000001
 
-perl Maf2SpanningSeq_PRANK.perl outout2.maf  AANH01016957.1 -runPrank -TwoBitSuffix ~/ForwardGenomics/genomes/ -treeFile /home/alexandre/ForwardGenomics/tree.txt -BDBFile testBDB -noMissingSeq
+perl Maf2SpanningSeq_PRANK.perl outtest.maf   AANH01000002.1 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile testBDB -noMissingSeq
 
 
 out.maf CDS053214  -runPrank -treeFile /xieduo/01.B10K/07.Forward_genomics/test/identity/tree.nh -keepTemporaryFiles -genomePath genomes 
