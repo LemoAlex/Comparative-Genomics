@@ -27,3 +27,8 @@ out.maf CDS053214  -runPrank -treeFile /xieduo/01.B10K/07.Forward_genomics/test/
 
  perl Maf2SpanningSeq_PRANK.perl AANH01016957.1.extract.maf  AANH01016957.1 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile testBDB -noMissingSeq
  
+
+##with cottoperca ref
+cd cotto
+mafSplit region.bdb -byTarget -useFullSequenceName split cotto.rename.maf
+ sh loopIrows.sh
