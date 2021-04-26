@@ -13,7 +13,7 @@ perl Assembly2species.perl final.maf > final.rename.maf
 
 
 
-perl Maf2SpanningSeq_PRANK.perl outtest.maf   AANH01006599.1 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile AANH01006599.1.BDB -noMissingSeq
+perl Maf2SpanningSeq_PRANK.perl outExtract.maf LR131933.1 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile LR131933.1.BDB -noMissingSeq
 
 
 out.maf CDS053214  -runPrank -treeFile /xieduo/01.B10K/07.Forward_genomics/test/identity/tree.nh -keepTemporaryFiles -genomePath genomes 
