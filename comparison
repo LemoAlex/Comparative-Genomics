@@ -1,16 +1,15 @@
 mafSplit region.bdb -byTarget -useFullSequenceName out renamed.2.maf
 
 mafSplit renamed.2.maf -byTarget -useFullSequenceName
+loopIdrows.sh
 
-mafAddIRows /home/alexandre/ForwardGenomics/scripts/out/outAANH01004007.1.maf
-for i in 
-mafAddIRows outAANH01000001.1.maf /home/alexandre/ForwardGenomics/genomes/stickleback/stickleback.2bit addIOut
+##add maf header to final file
 
-./mafIndex -chromSizes=/home/alexandre/ForwardGenomics/genomes/stickleback/stickleback.chrom.sizes final.maf out.bb -keepBed=region.bdb  #### remove .1 in the chrom.size
+perl Assembly2species.perl final.maf > final.rename.maf
 
-./mafIndex ououou.maf -chromSizes=/home/alexandre/ForwardGenomics/genomes/stickleback/stickleback.chrom.sizes outtest.bb keepBed=test.bdb
+./mafIndex final.rename.maf -chromSizes=/home/alexandre/ForwardGenomics/genomes/blenny/blenny.chrom.sizes out.bb -keepBed=region.bdb  #### remove .1 in the chrom.size
 
-./mafExtract out.bb outtest.maf -regionList=region.bdb -leaveEdgeMeta
+./mafExtract out.bb outExtract.maf -regionList=region.bdb -leaveEdgeMeta
 
 
 
