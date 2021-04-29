@@ -38,6 +38,29 @@ source cactus_env/bin/activate
 #this works
 docker run -v $(pwd):/data --rm -it quay.io/comparative-genomics-toolkit/cactus:v1.3.0 cactus /data/jobStore2 /data/test1.txt /data/test1.hal --binariesMode local
 
+##16 species assembly
+##First, we need to cleanup the headers. Since many scaffold names have spaces, we remove everything after spaces in headers of scaffolds (except for callionymus, where we remove after ;
+
+sed '/^>/{s/\s.*$//}'  Polypterus_senegalus.fna.masked >polypterus.masked 
+sed '/^>/{s/\s.*$//}' Polyodon_spathula.fa.masked>polyodon.masked
+sed '/^>/{s/\s.*$//}'  Thunnus_orientalis.fna.masked	>Thunnus.masked
+sed '/^>/{s/\s.*$//}' Sparus_aurata.fa.masked>sparus.masked
+sed '/^>/{s/\s.*$//}' Takifugu_rubripes.fa.masked>takifugu.masked
+sed '/^>/{s/\s.*$//}' Oryzias_latipes.fa.masked>oryzias.masked
+sed '/^>/{s/\s.*$//}' Chanos_chanos.fa.masked	>chanos.masked
+sed '/^>/{s/\s.*$//}' Latimeria_chalumnae.fa.masked>latimeria.masked
+sed '/^>/{s/\s.*$//}' Notolabrius_celiodotus.fa.masked>notolabrius.masked
+sed '/^>/{s/;.*//}' Callionymus_lyra.fa.masked>callionymus.masked
+sed '/^>/{s/\s.*$//}' Ictalurus_punctatus.fa.masked>ictalurus.masked
+sed '/^>/{s/\s.*$//}' Electrophorus_electricus.fa.masked>electrophorus.masked
+sed '/^>/{s/\s.*$//}' Lophius_litulon.fa.masked>lophius.masked
+sed '/^>/{s/\s.*$//}' Pseudoliparis_swirei.fa.masked>pseudoliparis.masked
+sed '/^>/{s/\s.*$//}' Monopterus_albus.fa.masked	>monopterus.masked
+sed '/^>/{s/\s.*$//}' Chanos_chanos.fa.masked	> chanos.masked
+sed '/^>/{s/\s.*$//}' Pygocentrus_nattereri.fa.masked	> pygocentrus.masked
+
+
+cd /home/alexandre/cactus-bin-v1.3.0
 docker run -v $(pwd):/data --rm -it quay.io/comparative-genomics-toolkit/cactus:v1.3.0 cactus --maxCores 6 /data/16specalign /data/Scale_less.alignment.txt /data/16spec.hal --binariesMode local
 
 
