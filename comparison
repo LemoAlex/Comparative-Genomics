@@ -6,14 +6,14 @@ loopIdrows.sh
 ##add maf header to final file
 
 perl Assembly2species.perl final.maf > final.rename.maf
+##maf version=1 scoring=N/A
 
-./mafIndex final.rename.maf -chromSizes=/home/alexandre/ForwardGenomics/genomes/blenny/blenny.chrom.sizes out.bb -keepBed=region.bdb  #### remove .1 in the chrom.size
-
+./mafIndex final.maf -chromSizes=/home/alexandre/ForwardGenomics/genomes/blenny/blenny.chrom.sizes out.bb -keepBed=region.bdb  #### remove .1 in the chrom.size
 ./mafExtract out.bb outExtract.maf -regionList=region.bdb -leaveEdgeMeta
 
 
-
-perl Maf2SpanningSeq_PRANK.perl outExtract.maf LR131933.1 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile LR131933.1.BDB -noMissingSeq
+mafExtract out.bb Extract.LR131916.maf -regionList=LR131916.bdb -leaveEdgeMeta
+perl Maf2SpanningSeq_PRANK.perl ../cotto/Extract.CAAAFJ010000001.maf  CAAAFJ010000001 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile testBDB -noMissingSeq
 
 
 out.maf CDS053214  -runPrank -treeFile /xieduo/01.B10K/07.Forward_genomics/test/identity/tree.nh -keepTemporaryFiles -genomePath genomes 
