@@ -13,7 +13,7 @@ cut -f 1,2,3 region.bdb > region.trim.bed
 awk '{print $4,NR}' region.trim.bed > aa
 paste -d' ' region.trim.bed aa > region.final.bed
 mafExtract out.bb -outDir ./out -regionList=region.final.bed -leaveEdgeMeta
-
+perl Maf2SpanningSeq_PRANK.perl ../cotto/out/1.maf  1 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile testBDB -noMissingSeq
 
 mafExtract out.bb Extract.LR131916.maf -regionList=LR131916.bdb -leaveEdgeMeta
 perl Maf2SpanningSeq_PRANK.perl ../cotto/Extract.CAAAFJ010000001.maf  CAAAFJ010000001 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile testBDB -noMissingSeq
