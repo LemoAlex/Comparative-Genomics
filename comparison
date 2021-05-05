@@ -26,6 +26,10 @@ perl Maf2SpanningSeq_PRANK.perl ../cotto/out/out/1.maf  1 -runPrank -TwoBitSuffi
 #this
 perl Maf2SpanningSeq_PRANK.perl ../cotto/out/chr1/final.maf  2167 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile chr1BDB -noMissingSeq -verbose
 
+perl Maf2SpanningSeq_PRANK.perl ../cotto/out/chr1/2182.maf  2182 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile testBDB -noMissingSeq -verbose
+
+export PATH="/home/alexandre/phast/bin:$PATH"
+export PATH="/home/alexandre/ForwardGenomics/scripts:$PATH"
 
 
 
