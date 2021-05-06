@@ -1,10 +1,32 @@
+sed 's/\.1//g' aa > aa.maf ### remove .1 in maf file
+sed 's/\.1//g' 
+###FOR ALL
+Assembly2species.perl final.maf > final.rename.maf
 mafSplit region.bdb -byTarget -useFullSequenceName renamed.2.maf
-
 mafSplit renamed.2.maf -byTarget -useFullSequenceName
 loopIdrows.sh
+
 ##add maf header to final file ##maf version=1 scoring=N/A
 
 > final.maf
+./mafIndex final.maf -chromSizes=/home/alexandre/ForwardGenomics/genomes/blenny/blenny.chrom.sizes2 out2.bb -keepBed=region2.bdb 
+cut -f 1,2,3 region2.bdb > region.trim.bed
+awk '{print $4,NR}' region.trim.bed > aa
+paste -d' ' region.trim.bed aa > region.final.bed
+
+
+
+
+##Then, chrom by chrom.
+mafExtract out2.bb -outDir ./chr2 -regionList=chr2.bdb -leaveEdgeMeta
+
+###Chromosome 2
+grep 'LR131917' region.final.bed > chr2.bdb
+mafExtract out2.bb -outDir ./chr2 -regionList=chr2.bdb -leaveEdgeMeta
+cd /home/alexandre/ForwardGenomics/scripts/
+perl Maf2SpanningSeq_PRANK.perl ~/ForwardGenomics/cotto/out/chr2/299044.maf  299044 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile ./chr2/299044BDB -noMissingSeq
+
+
 
 
 ##perl Assembly2species.perl final.maf > final.rename.maf
@@ -15,26 +37,28 @@ sed 's/\.1//g' final.maf > test.maf ### remove .1 in maf file
 cut -f 1,2,3 region2.bdb > region.trim.bed
 awk '{print $4,NR}' region.trim.bed > aa
 paste -d' ' region.trim.bed aa > region.final.bed
+grep 'LR131917' region.final.bed > chr2.bdb
 mafExtract out2.bb -outDir ./out -regionList=chr1.bdb -leaveEdgeMeta
 perl Maf2SpanningSeq_PRANK.perl ../cotto/out/out/1.maf  1 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile testBDB -noMissingSeq
 
 
 
 #for chr1
-./mafIndex final.maf -chromSizes=/home/alexandre/ForwardGenomics/genomes/blenny/blenny.chrom.sizes2 chr1.bb -keepBed=chr1.bdb  #### remove .1 in the chrom.size
-
-#this
-perl Maf2SpanningSeq_PRANK.perl ../cotto/out/chr1/final.maf  2167 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile chr1BDB -noMissingSeq -verbose
-
-perl Maf2SpanningSeq_PRANK.perl ../cotto/out/chr1/2182.maf  2182 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile testBDB -noMissingSeq -verbose
-
 export PATH="/home/alexandre/phast/bin:$PATH"
 export PATH="/home/alexandre/ForwardGenomics/scripts:$PATH"
 
+./mafIndex final.maf -chromSizes=/home/alexandre/ForwardGenomics/genomes/blenny/blenny.chrom.sizes2 chr1.bb -keepBed=chr1.bdb  #### remove .1 in the chrom.size
+
+#this
+perl Maf2SpanningSeq_PRANK.perl ../cotto/out/chr1/2182.maf  2182 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile testBDB -noMissingSeq -verbose
+perl GetGlobalAndLocalPercentID.perl testBDB 2182 -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -allowedAncestralNodes ance -local -global -GlobalBDBFile global.bdb -LocalBDBFile local.bdb
+
+
+perl Maf2SpanningSeq_PRANK.perl ../cotto/out/chr1/2182.maf  2182 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile testBDB -noMissingSeq -verbose
 
 
 
-mafExtract out.bb Extract.LR131916.maf -regionList=LR131916.bdb -leaveEdgeMeta
+
 perl Maf2SpanningSeq_PRANK.perl 1.maf  LR131916 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile testBDB -noMissingSeq
 
  
@@ -42,13 +66,6 @@ perl Maf2SpanningSeq_PRANK.perl 1.maf  LR131916 -runPrank -TwoBitSuffix .2bit -t
 
   mafExtract out.bb -outDir ./out -regionList=region.final.bed -leaveEdgeMeta
 
- 
- 
- grep ^'AANH01000001' region.bdb > AANH01000001.bdb
- ./mafExtract out.bb AANH01000001.maf -regionList=AANH01000001.bdb -leaveEdgeMeta
-
- perl Maf2SpanningSeq_PRANK.perl AANH01016957.1.extract.maf  AANH01016957.1 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile testBDB -noMissingSeq
- 
 
 ##with cottoperca ref
 cd cotto
