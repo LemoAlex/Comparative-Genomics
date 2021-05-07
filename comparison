@@ -46,20 +46,22 @@ perl Maf2SpanningSeq_PRANK.perl ../cotto/out/out/1.maf  1 -runPrank -TwoBitSuffi
 #for chr1
 export PATH="/home/alexandre/phast/bin:$PATH"
 export PATH="/home/alexandre/ForwardGenomics/scripts:$PATH"
+export PATH=/home/alexandre/local/bpp/dev/sources/bppSuite:$PATH
 
 ./mafIndex final.maf -chromSizes=/home/alexandre/ForwardGenomics/genomes/blenny/blenny.chrom.sizes2 chr1.bb -keepBed=chr1.bdb  #### remove .1 in the chrom.size
 
 #this
 perl Maf2SpanningSeq_PRANK.perl ../cotto/out/chr1/2182.maf  2182 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile testBDB -noMissingSeq -verbose
-perl GetGlobalAndLocalPercentID.perl testBDB 2182 -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -allowedAncestralNodes ance -local -global -GlobalBDBFile global.bdb -LocalBDBFile local.bdb
-
-
-perl Maf2SpanningSeq_PRANK.perl ../cotto/out/chr1/2182.maf  2182 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile testBDB -noMissingSeq -verbose
-
+perl GetGlobalAndLocalPercentID.perl testBDB 2182 -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -requireNoOutgroup -allowedAncestralNodes ance -local -global -GlobalBDBFile global.bdb -LocalBDBFile local.bdb
+--> check require no outgroup
 
 
 
-perl Maf2SpanningSeq_PRANK.perl 1.maf  LR131916 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile testBDB -noMissingSeq
+perl Maf2SpanningSeq_PRANK.perl ~/ForwardGenomics/cotto/out/chr2/299044.maf  299044 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile 299044BDB -verbose -keepTemporaryFiles ./
+
+>> WORKING
+ GetGlobalAndLocalPercentID.perl 299044BDB 299044 -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -requireNoOutgroup -allowedAncestralNodes stickleback-blenny,amberjack-stickleback -local -global -GlobalBDBFile global.bdb -LocalBDBFile local.bdb
+
 
  
  mafExtract out.bb -outDir ./out -regionList=test.bed -leaveEdgeMeta
