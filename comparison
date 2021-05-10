@@ -93,5 +93,9 @@ library(phangorn)
 library(weights)
 library(isotone)
 
+##prepare the input files
+tree_doctor tree.nh -a > tree.R.nh
 
-Rscript forwardGenomics.R 
+
+Rscript forwardGenomics.R  --tree=tree.R.nh --elementIDs=elements --listPheno=Pheno --globalPid=globalPid --localPid=localPid --weights=branchWeights_CDS.txt --expectedPerIDs=expPercentID_CDS.txt --outFile=outTEST
+
