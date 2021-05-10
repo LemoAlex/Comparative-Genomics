@@ -73,3 +73,25 @@ perl Maf2SpanningSeq_PRANK.perl ~/ForwardGenomics/cotto/out/chr2/299044.maf  299
 cd cotto
 mafSplit region.bdb -byTarget -useFullSequenceName split cotto.rename.maf
  sh loopIrows.sh
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ##R code
+ R
+ install.packages("caper")
+install.packages("xtermStyle")
+install.packages("phangorn")
+install.packages("weights")
+install.packages("isotone")
+library(caper)
+library(xtermStyle)
+library(phangorn)
+library(weights)
+library(isotone)
+
+
+Rscript forwardGenomics.R 
