@@ -94,8 +94,8 @@ library(weights)
 library(isotone)
 
 ##prepare the input files
-tree_doctor tree.nh -a > tree.R.nh
+tree_doctor tree.R.nh -a > tree.R2.nh
 
 
-Rscript forwardGenomics.R  --tree=tree.R.nh --elementIDs=elements --listPheno=Pheno --globalPid=globalPid --localPid=localPid --weights=branchWeights_CDS.txt --expectedPerIDs=expPercentID_CDS.txt --outFile=outTEST
+Rscript forwardGenomics.R  --tree=tree.R.nh --elementIDs=element.final --listPheno=Pheno --globalPid=global.final --localPid=local.final --weights=branchWeights_CDS.txt --expectedPerIDs=expPercentID_CDS.txt --outFile=outTEST
 
