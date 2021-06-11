@@ -69,5 +69,7 @@ cd /home/alexandre/cactus-bin-v1.3.0
 
 docker run -v $(pwd):/data --rm -it quay.io/comparative-genomics-toolkit/cactus:v1.3.0 cactus --maxCores 6 /data/16specalign /data/Scale_less.alignment.txt /data/16spec.hal --binariesMode local
 
+docker run -v $(pwd):/data --rm -it quay.io/comparative-genomics-toolkit/cactus:v1.3.0 cactus-prepare /data/Scale_less.alignment.txt --outDir /data/16specalign/ --outSeqFile /data/16specalign/seqfile.txt --outHal /data/16spec.hal --jobStore jobstore_16spec > aa
+
 
 hal2maf
