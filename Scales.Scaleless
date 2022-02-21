@@ -1,0 +1,2 @@
+cd ~/cactus-bin-v1.3.0/bin$
+./hal2maf 16spec-hal --noAncestors --refGenome Oryzias_latipes Final16.oryRef.maf
