@@ -12,20 +12,20 @@ sed 's/\.1//g' Final16.maf > Final16_1.maf ##remove .1 in the maf file
 faToTwoBit oryzias.masked oryzias.2bit
 twoBitInfo oryzias.2bit oryzias.info
 
-
-
+##we need a bedfile for mafsplit based on chromosomes.
 
 ./mafIndex  Final16_1.maf -chromSizes=oryzias.info out.bb -keepBed=region.bdb  #### then remove .1 in the chrom.size
 cut -f 1,2,3 region2.bdb > region.trim.bed
 awk '{print $4,NR}' region.trim.bed > aa
 paste -d' ' region.trim.bed aa > region.final.bed
 
+##now split maf per chrom, addI rows, and then cat them to get the final maf file (loop script)
 mafSplit region.final.bed -byTarget -useFullSequenceName split Final16_1.maf
 sh loop_maffaddI.sh
 
 
 
-
+## Then we reperform the index file
 ./mafIndex final.maf -chromSizes=oryzias.info out.bb -keepBed=region2.bdb  #### remove .1 in the chrom.size
 cut -f 1,2,3 region2.bdb > region.trim.bed
 awk '{print $4,NR}' region.trim.bed > aa
