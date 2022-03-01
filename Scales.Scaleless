@@ -22,14 +22,17 @@ paste -d' ' region.trim.bed aa > region.final.bed
 ##now split maf per chrom, addI rows, and then cat them to get the final maf file (loop script)
 mafSplit region.final.bed -byTarget -useFullSequenceName split Final16_1.maf
 sh loop_maffaddI.sh
+##add maf header to final file ##maf version=1 scoring=N/A
 
 
 
 ## Then we reperform the index file
-./mafIndex final.maf -chromSizes=oryzias.info out.bb -keepBed=region2.bdb  #### remove .1 in the chrom.size
+./mafIndex final.maf -chromSizes=oryzias.info out2.bb -keepBed=region2.bdb  #### remove .1 in the chrom.size
 cut -f 1,2,3 region2.bdb > region.trim.bed
 awk '{print $4,NR}' region.trim.bed > aa
-paste -d' ' region.trim.bed aa > region.final.bed
-grep 'LR131917' region.final.bed > chr2.bdb
+paste -d' ' region.trim.bed aa > region2.final.bed
+
+###for chromosome 1
+grep 'CP020665' region2.final.bed > chr1.bdb
 mafExtract out2.bb -outDir ./out -regionList=chr1.bdb -leaveEdgeMeta
 perl Maf2SpanningSeq_PRANK.perl ../cotto/out/out/1.maf  1 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile testBDB -noMissingSeq
