@@ -3,9 +3,33 @@ cd ~/cactus-bin-v1.3.0/bin$
 
 cd ~/Forwardgenomics/16spec
 
-sed 's/\.1//g' Final16.maf > Final16_1.maf ##remove .1 in the maf file
-###perl Assembly2Species.perl Final16_1.maf > final.rename.maf
 
+sed 's/\.1//g' Final16.maf > Final16_1.maf ##remove .1 in the maf file
+
+
+##input preparation beofre analysis 
+
+faToTwoBit oryzias.masked oryzias.2bit
+twoBitInfo oryzias.2bit oryzias.info
+
+
+
+
+./mafIndex  Final16_1.maf -chromSizes=oryzias.info out.bb -keepBed=region.bdb  #### then remove .1 in the chrom.size
+cut -f 1,2,3 region2.bdb > region.trim.bed
+awk '{print $4,NR}' region.trim.bed > aa
+paste -d' ' region.trim.bed aa > region.final.bed
 
 mafSplit region.final.bed -byTarget -useFullSequenceName split Final16_1.maf
 sh loop_maffaddI.sh
+
+
+
+
+./mafIndex final.maf -chromSizes=oryzias.info out.bb -keepBed=region2.bdb  #### remove .1 in the chrom.size
+cut -f 1,2,3 region2.bdb > region.trim.bed
+awk '{print $4,NR}' region.trim.bed > aa
+paste -d' ' region.trim.bed aa > region.final.bed
+grep 'LR131917' region.final.bed > chr2.bdb
+mafExtract out2.bb -outDir ./out -regionList=chr1.bdb -leaveEdgeMeta
+perl Maf2SpanningSeq_PRANK.perl ../cotto/out/out/1.maf  1 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile testBDB -noMissingSeq
