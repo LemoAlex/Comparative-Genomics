@@ -6,4 +6,6 @@ cd ~/Forwardgenomics/16spec
 sed 's/\.1//g' Final16.maf > Final16_1.maf ##remove .1 in the maf file
 ###perl Assembly2Species.perl Final16_1.maf > final.rename.maf
 
-nice -n 19 mafSplit region.bdb -byTarget -useFullSequenceName renamed.2.maf
+
+mafSplit region.final.bed -byTarget -useFullSequenceName split Final16_1.maf
+sh loop_maffaddI.sh
