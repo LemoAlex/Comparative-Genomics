@@ -34,5 +34,60 @@ paste -d' ' region.trim.bed aa > region2.final.bed
 
 ###for chromosome 1
 grep 'CP020665' region2.final.bed > chr1.bdb
-mafExtract out2.bb -outDir ./out -regionList=chr1.bdb -leaveEdgeMeta
+grep 'CP020666' region2.final.bed > chr2.bdb
+grep 'CP020667' region2.final.bed > chr3.bdb
+grep 'CP020668' region2.final.bed > chr4.bdb
+grep 'CP020669' region2.final.bed > chr5.bdb
+grep 'CP020670' region2.final.bed > chr6.bdb
+grep 'CP020671' region2.final.bed > chr7.bdb
+grep 'CP020672' region2.final.bed > chr8.bdb
+grep 'CP020673' region2.final.bed > chr9.bdb
+grep 'CP020674' region2.final.bed > chr10.bdb
+grep 'CP020675' region2.final.bed > chr11.bdb
+grep 'CP020676' region2.final.bed > chr12.bdb
+grep 'CP020677' region2.final.bed > chr13.bdb
+grep 'CP020678' region2.final.bed > chr14.bdb
+grep 'CP020679' region2.final.bed > chr15.bdb
+grep 'CP020680' region2.final.bed > chr16.bdb
+grep 'CP020681' region2.final.bed > chr17.bdb
+grep 'CP020682' region2.final.bed > chr18.bdb
+grep 'CP020683' region2.final.bed > chr19.bdb
+grep 'CP020684' region2.final.bed > chr20.bdb
+grep 'CP020685' region2.final.bed > chr21.bdb
+grep 'CP020686' region2.final.bed > chr22.bdb 
+grep 'CP020687' region2.final.bed > chr23.bdb
+grep 'CP020688' region2.final.bed > chr24.bdb
+
+./mafExtract out2.bb -outDir ./out -regionList=chr1.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out2 -regionList=chr2.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out2 -regionList=chr2.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out3 -regionList=chr3.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out4 -regionList=chr3.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out5 -regionList=chr3.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out6 -regionList=chr3.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out7 -regionList=chr3.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out8 -regionList=chr3.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out9 -regionList=chr3.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out10 -regionList=chr10.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out11 -regionList=chr11.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out12 -regionList=chr12.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out13 -regionList=chr13.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out14 -regionList=chr14.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out15 -regionList=chr15.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out16 -regionList=chr16.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out17 -regionList=chr17.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out18 -regionList=chr18.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out19 -regionList=chr19.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out20 -regionList=chr20.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out21 -regionList=chr21.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out22 -regionList=chr22.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out23 -regionList=chr23.bdb -leaveEdgeMeta
+./mafExtract out2.bb -outDir ./out24 -regionList=chr24.bdb -leaveEdgeMeta
+
+
 perl Maf2SpanningSeq_PRANK.perl ../cotto/out/out/1.maf  1 -runPrank -TwoBitSuffix .2bit -treeFile /home/alexandre/ForwardGenomics/scripts/tree.nh -BDBFile testBDB -noMissingSeq
+
+
+
+
+
