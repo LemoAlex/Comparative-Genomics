@@ -89,5 +89,16 @@ perl Maf2SpanningSeq_PRANK.perl ../cotto/out/out/1.maf  1 -runPrank -TwoBitSuffi
 
 
 
+cat local* > local.final.final2
+sed '/branch id pid/d' local.final.final2 > local.final.final
+
+cat global*> global.final.final2
+sed '/specie......./d' global.final.final2 > global.final.final
+
+
+Rscript forwardGenomics.R  --tree=tree.R.nh --elementIDs=element.final --listPheno=Pheno --globalPid=global.final --localPid=local.final --weights=branchWeights_CDS.txt --expectedPerIDs=expPercentID_CDS.txt --outFile=outTEST
+
+
+nice -n 19 Rscript forwardGenomics.R  --tree=tree8spec.final.nh --elementIDs=element.final.final --listPheno=Pheno.plates --globalPid=global.final.final --localPid=local.final.final --weights=branchWeights_CDS.txt --expectedPerIDs=expPercentID_CDS.txt --outFile=out.plates
 
 
