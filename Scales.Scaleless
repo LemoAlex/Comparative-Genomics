@@ -98,7 +98,20 @@ sed '/specie......./d' global.final.final2 > global.final.final
 
 Rscript forwardGenomics.R  --tree=tree.R.nh --elementIDs=element.final --listPheno=Pheno --globalPid=global.final --localPid=local.final --weights=branchWeights_CDS.txt --expectedPerIDs=expPercentID_CDS.txt --outFile=outTEST
 
-
 nice -n 19 Rscript forwardGenomics.R  --tree=tree8spec.final.nh --elementIDs=element.final.final --listPheno=Pheno.plates --globalPid=global.final.final --localPid=local.final.final --weights=branchWeights_CDS.txt --expectedPerIDs=expPercentID_CDS.txt --outFile=out.plates
+
+###Run with GLS only, require only global file
+### Careful, the element cannot be only consisting of numerical, so we add a prefix:
+
+sed 's/^/element./' global.final.final  ### remember then to remove the element. from the first line (with the headers)
+
+##then we split :
+split -l XXX(depending on number) global.final.final
+##rename accordingly
+##to get the element file :
+tail -n +2 global.final.1 | cut -f1 -d " " > element.1 ## etc...
+
+
+nice -n 19 Rscript forwardGenomics.R  --tree=tree8spec.final.nh --elementIDs=./split/element.1 --listPheno=Pheno.plates --globalPid=./split/global.final.1 --outFile=out.plates.1 --method='GLS'
 
 
